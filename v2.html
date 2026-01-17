@@ -1312,37 +1312,6 @@
                 50% { transform: scale(1.1); opacity: 0.7; }
                 100% { transform: scale(1); opacity: 1; }
             }
-
-            /* Custom Cursor */
-            .cursor-dot,
-            .cursor-outline {
-                position: fixed;
-                top: 0;
-                left: 0;
-                transform: translate(-50%, -50%);
-                border-radius: 50%;
-                z-index: 9999;
-                pointer-events: none;
-            }
-            .cursor-dot {
-                width: 8px;
-                height: 8px;
-                background-color: var(--gold-primary);
-            }
-            .cursor-outline {
-                width: 40px;
-                height: 40px;
-                border: 1px solid var(--gold-primary);
-                transition: width 0.2s, height 0.2s, background-color 0.2s;
-            }
-            
-            body {
-                cursor: none;
-            }
-            
-            a, button, .project-card, .service-card {
-                cursor: none;
-            }
         }
     </style>
 </head>
@@ -1351,10 +1320,6 @@
     <div class="preloader">
         <img src="l1.png" alt="Loading..." class="preloader-logo">
     </div>
-
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
 
     <!-- Navigation -->
     <nav class="nav" id="navbar">
@@ -1699,36 +1664,6 @@
         window.addEventListener('load', () => {
             const preloader = document.querySelector('.preloader');
             preloader.classList.add('hidden');
-        });
-
-        // Custom Cursor
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
-        
-        document.querySelectorAll('a, button, .project-card, .service-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.style.width = '60px';
-                cursorOutline.style.height = '60px';
-                cursorOutline.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.width = '40px';
-                cursorOutline.style.height = '40px';
-                cursorOutline.style.backgroundColor = 'transparent';
-            });
         });
 
         // Navigation scroll effect
